@@ -168,5 +168,7 @@ cython_debug/
 .venv/
 
 # Ignora arquivos de imagens
-
 photos/*.jpg
+
+# Ignora relatórios csv
+results/*.csv
