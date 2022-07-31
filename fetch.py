@@ -24,7 +24,9 @@ def fetch_content(list_of_dicts):
     readme_responses = grequests.map(readme_gen)
 
     for index in range(len(list_of_dicts)):
-        list_of_dicts[index]["github"] = Selector(text=git_responses[index].text)
+        list_of_dicts[index]["github"] = Selector(
+            text=git_responses[index].text
+        )
         list_of_dicts[index]["github_readme"] = Selector(
             text=readme_responses[index].text
         )
@@ -41,7 +43,8 @@ def fetch_content(list_of_dicts):
 
     for index in range(len(list_of_dicts)):
         with open(
-            "photos/" + list_of_dicts[index]["github_username"] + "_image.jpg", "wb"
+            "photos/" + list_of_dicts[index]["github_username"] + "_image.jpg",
+            "wb",
         ) as handler:
             handler.write(photo_responses[index].content)
         list_of_dicts[index]["photo"] = FaceDetector.find_faces(
