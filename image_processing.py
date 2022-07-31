@@ -9,6 +9,6 @@ def has_photo(selector, username):
     image_url = get_image_url(selector)
     sleep(2)
     img_data = get(image_url).content
-    with open('photos/'+ username+'_image.jpg', 'wb') as handler:
-        handler.write(img_data) 
-    return FaceDetector.find_faces('photos/'+ username+'_image.jpg')
+    with open("photos/" + username + "_image.jpg", "wb") as handler:
+        handler.write(img_data)
+    return FaceDetector.find_faces("photos/" + username + "_image.jpg")
