@@ -125,7 +125,7 @@ celerybeat.pid
 
 # Environments
 .env
-.venv
+.venv*
 env/
 venv/
 ENV/
@@ -166,3 +166,10 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/python
 
 .venv/
+
+# Ignora arquivos de imagens
+photos/*.jpg
+
+# Ignora relatórios csv
+results/*.csv
+statistics/*.csv
