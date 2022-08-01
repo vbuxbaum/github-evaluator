@@ -1,43 +1,20 @@
-from operator import itemgetter
+from statistics import median_high as c_median
+
+STATS = [
+    "mean_tags",
+    "mean_repos",
+    "mean_pinned",
+    "median_tags",
+    "median_repos",
+    "median_pinned",
+]
 
 
 def get_statistics(list_of_dicts):
-    statistics_dict = {
-        "users": len(list_of_dicts),
-        "mean_tags": 0,
-        "mean_repos": 0,
-        "mean_pinned": 0,
-        "median_tags": 0,
-        "median_repos": 0,
-        "median_pinned": 0,
-    }
-
-    by_tags = sorted(list_of_dicts, key=itemgetter("tags"))
-    by_repos = sorted(list_of_dicts, key=itemgetter("repos"))
-    by_pinned = sorted(list_of_dicts, key=itemgetter("pinned"))
-
-    if len(list_of_dicts) % 2 != 0:
-        statistics_dict["median_tags"] = by_tags[len(list_of_dicts) // 2 + 1][
-            "tags"
-        ]
-        statistics_dict["median_repos"] = by_repos[
-            len(list_of_dicts) // 2 + 1
-        ]["repos"]
-        statistics_dict["median_pinned"] = by_pinned[
-            len(list_of_dicts) // 2 + 1
-        ]["pinned"]
-    else:
-        statistics_dict["median_tags"] = (
-            by_tags[len(list_of_dicts) // 2]["tags"]
-            + by_tags[len(list_of_dicts) // 2 + 1]["tags"]
-        ) // 2
-        statistics_dict["median_repos"] = (
-            by_repos[len(list_of_dicts) // 2]["repos"]
-            + by_repos[len(list_of_dicts) // 2 + 1]["repos"]
-        ) // 2
-        statistics_dict["median_pinned"] = (
-            by_pinned[len(list_of_dicts) // 2]["pinned"]
-            + by_pinned[len(list_of_dicts) // 2 + 1]["pinned"]
-        ) // 2
+    statistics_dict = dict.fromkeys(STATS, 0)
+    statistics_dict["users"] = len(list_of_dicts)
+    for stat in STATS:
+        stat_values = [d[stat.split("_")[1]] for d in list_of_dicts]
+        statistics_dict[stat] = c_median(stat_values)
 
     return statistics_dict
