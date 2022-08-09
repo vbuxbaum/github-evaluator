@@ -173,3 +173,4 @@ photos/*.jpg
 # Ignora relatórios csv
 results/*.csv
 statistics/*.csv
+target_data/*.csv
