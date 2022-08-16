@@ -44,8 +44,6 @@ def fetch_content(list_of_dicts):
         if not bool(photos_urls[index]):
             photos_urls[index] = 'https://i.imgur.com/PRiA9r9.png'
     
-    print(photos_urls)
-
 
     photo_gen = (grequests.get(photo) for photo in photos_urls)
     photo_responses = grequests.map(photo_gen)
