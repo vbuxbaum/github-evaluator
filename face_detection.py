@@ -10,7 +10,6 @@ class FaceDetector:
     @classmethod
     def find_faces(cls, path):
 
-        # Read the image
         image = cv2.imread(path)
         reduced = cv2.resize(
             image,
@@ -21,12 +20,10 @@ class FaceDetector:
         )
         gray = cv2.cvtColor(reduced, cv2.COLOR_BGR2GRAY)
 
-        # Detect faces in the image
         faces = cls.frontal.detectMultiScale3(
             gray, scaleFactor=1.1, minNeighbors=3, outputRejectLevels=True
         )
 
-        # Draw a rectangle around the faces
         for dims in faces[0]:
             dims = (dims / cls.resize_factor).round().astype(int)
             x, y, w, h = dims

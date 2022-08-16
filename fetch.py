@@ -23,6 +23,8 @@ def fetch_content(list_of_dicts):
     git_responses = grequests.map(git_gen)
     readme_responses = grequests.map(readme_gen)
 
+    sleep(1)
+
     for index in range(len(list_of_dicts)):
         list_of_dicts[index]["github"] = Selector(
             text=git_responses[index].text
@@ -31,10 +33,19 @@ def fetch_content(list_of_dicts):
             text=readme_responses[index].text
         )
 
+    sleep(1)
+
     photos_urls = [
         selector["github"].css('a[itemprop="image"]::attr(href)').get()
         for selector in list_of_dicts
     ]
+
+    for index in range(len(photos_urls)):
+        if not bool(photos_urls[index]):
+            photos_urls[index] = 'https://i.imgur.com/PRiA9r9.png'
+    
+    print(photos_urls)
+
 
     photo_gen = (grequests.get(photo) for photo in photos_urls)
     photo_responses = grequests.map(photo_gen)
