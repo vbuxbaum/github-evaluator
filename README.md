@@ -4,9 +4,7 @@
 
 1. Python 3 funcionando na máquina. (Como nem todas as versões foram testadas, podem haver problemas de compatibilidade.) 
 
-<!---
 2. Para se utilizar de acordo com o que foi pensado é necessário colocar o arquivo .csv que vai ser utilizado na pasta target_data, esse arquivo precisa ter as colunas (cohort_name, github_username, name) tais informações podem ser encontradas na question 5452.
---->
 
 
 ## Execução da aplicação
